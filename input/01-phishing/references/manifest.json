@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "approved-style.png",
+      "sha256": "7eb5d0f2191ea8e3036757a7deb65eb3b666ca5b4c42f5c6fc7f146589b8f623"
+    },
+    {
+      "file": "reference-feedback.png",
+      "sha256": "a240a24e6085d7851586b1250a636670195df2faf895a87f327ee7b0c4e6f686"
+    },
+    {
+      "file": "reference-instruction.png",
+      "sha256": "a34742ff718bda57f363aeb7450aef6af88d0c249c204868c72bb1711cc33151"
+    },
+    {
+      "file": "reference-search.png",
+      "sha256": "7d29ba465b49f6affd752adf8d53425145959f4fe7c1bd1b0ad0759b3d5c5399"
+    },
+    {
+      "file": "reference-summary.png",
+      "sha256": "53c8491c4ac83e2e0997185b15544fe7f8ec794ed1b95a439423c526ac94ac23"
+    }
+  ]
+}
