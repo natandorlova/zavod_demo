@@ -30,5 +30,11 @@ function reset(){contextFirst=false;fresh();phase='notification';marks();$('#not
 $('#sender-name').textContent=d.email.sender_name;$('#sender-address').textContent=d.email.sender_address;$('#recipient').textContent='Кому: '+d.email.recipient;$('.subject').textContent=d.email.subject;
 for(const b of d.email.blocks){const p=node('p',b.text,'block'+(b.fragment_id?' interactive':'')+(b.kind==='link'?' link':''));if(b.fragment_id){p.dataset.fragment=b.fragment_id;p.tabIndex=0;p.setAttribute('role','button');}$('#blocks').append(p);}
 for(const el of document.querySelectorAll('[data-fragment]')){el.addEventListener('click',()=>renderFragment(el.dataset.fragment));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}});}
+// Keep the illustration intact and expose keyboard scrolling only when needed.
+const letter=$('.letter'),scrollHint=$('#scroll-hint');
+function updateScrollHint(){const overflow=!letter.hidden&&matchMedia('(min-width:701px)').matches&&letter.scrollHeight>letter.clientHeight+1;scrollHint.hidden=!overflow;if(overflow){letter.tabIndex=0;letter.setAttribute('role','region');letter.setAttribute('aria-label','Текст письма');letter.setAttribute('aria-describedby','scroll-hint');}else{letter.removeAttribute('tabindex');letter.removeAttribute('role');letter.removeAttribute('aria-label');letter.removeAttribute('aria-describedby');}}
+new ResizeObserver(updateScrollHint).observe(letter);
+new MutationObserver(updateScrollHint).observe(letter,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+window.addEventListener('resize',updateScrollHint);
 $('#open-mail').addEventListener('click',()=>context(true));$('#conditions').addEventListener('click',()=>context(false));$('#finish').addEventListener('click',finish);$('#back-summary').addEventListener('click',summary);fresh();
 })();
